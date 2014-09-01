@@ -10,7 +10,11 @@
 
 	<definition name="hello" extends="defaultTemplate">
 		<put-attribute name="header"
-			value="Tiles test" />
+			value="Hello test" />
+	</definition>
+	<definition name="securedemo" extends="defaultTemplate">
+		<put-attribute name="header"
+			value="Secure Demo test" />
 	</definition>
 
 
