@@ -13,15 +13,19 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.wengs.web.model.dao.PostDao;
+import com.wengs.web.model.dao.UserDao;
 import com.wengs.web.model.entity.Post;
+import com.wengs.web.model.entity.User;
 
 @Controller
-@RequestMapping(value="hello")
+@RequestMapping(value = "hello")
 public class HelloController {
 	@Autowired
 	private PostDao postDao;
+	@Autowired
+	private UserDao userDao;
 
-	@RequestMapping(value="hi")
+	@RequestMapping(value = "hi")
 	public String hello(@RequestParam("user") String user, Model model) {
 		Post post = new Post();
 		post.setContext("test1");
@@ -32,8 +36,21 @@ public class HelloController {
 		return "hello";
 	}
 
-	@RequestMapping(value = "json",method = RequestMethod.GET, headers = "Accept=application/json")
-	public @ResponseBody Map<String, String> helloJson() {
+	@RequestMapping(value = "createUser")
+	public String createUser(@RequestParam("username") String username,
+			@RequestParam("password") String password, Model model) {
+		User user = new User();
+		user.setUsername(username);
+		user.setPassword(password);
+		user.setRole("USER");
+		getUserDao().create(user);
+		model.addAttribute("user", username);
+		return "hello";
+	}
+
+	@RequestMapping(value = "json", method = RequestMethod.GET, headers = "Accept=application/json")
+	public @ResponseBody
+	Map<String, String> helloJson() {
 		HashMap<String, String> map = new HashMap<String, String>();
 		map.put("k1", "v1");
 		map.put("k2", "v2");
@@ -47,5 +64,13 @@ public class HelloController {
 
 	public void setPostDao(PostDao postDao) {
 		this.postDao = postDao;
+	}
+
+	public UserDao getUserDao() {
+		return userDao;
+	}
+
+	public void setUserDao(UserDao userDao) {
+		this.userDao = userDao;
 	}
 }

@@ -16,12 +16,12 @@ pageEncoding="UTF-8" %>
             <label>
                 username:
             </label>
-            <input type="text" name="username" id="username"/>
+            <input type="text" name="j_username" />
             <br/>
             <label>
                 password:
             </label>
-            <input type="password" name="password" id="password"/>
+            <input type="password" name="j_password"/>
             <br/>
             <input type="checkbox" name="_spring_security_remember_me"/>remember me
             <br/>
