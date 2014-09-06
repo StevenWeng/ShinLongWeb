@@ -1,22 +1,35 @@
-<?xml version="1.0" encoding="ISO-8859-1" ?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE tiles-definitions PUBLIC
        "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
        "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
 <tiles-definitions>
+	<definition name="defaultTemplate" template="/WEB-INF/template/default/template.jsp">
+		<put-attribute name="header" value="/WEB-INF/template/default/header.jsp"/>
+		<put-attribute name="menu" value="/WEB-INF/template/default/menu.jsp"/>
+		<put-attribute name="footer" value="/WEB-INF/template/default/footer.jsp"/>
+		<put-attribute name="leftContent" value="/WEB-INF/template/default/leftContent.jsp"/>
+	</definition>
+	
+	<definition name="introduction" extends="defaultTemplate">
+		<put-attribute name="title" value="信隆大藥局-藥局介紹"/>
+		<put-attribute name="rightContent" value="/WEB-INF/views/home/introduction.jsp"/>
+	</definition>
 
-	<definition name="defaultTemplate" template="/WEB-INF/views/hello.jsp">
+
+	<!-- Test tiles -->
+	<definition name="testTemplate" template="/WEB-INF/views/hello.jsp">
 
 	</definition>
 
-	<definition name="hello" extends="defaultTemplate">
+	<definition name="hello" extends="testTemplate">
 		<put-attribute name="header"
 			value="Hello test" />
 	</definition>
-	<definition name="securedemo" extends="defaultTemplate">
+	<definition name="securedemo" extends="testTemplate">
 		<put-attribute name="header"
 			value="Secure Demo test" />
 	</definition>
-
+	<!-- End Test tiles -->
 
 
 </tiles-definitions>

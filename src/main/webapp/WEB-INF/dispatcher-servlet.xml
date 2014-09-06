@@ -8,7 +8,9 @@
 
 	<context:component-scan base-package="com.wengs.web.controller" />
 	<mvc:annotation-driven />
-
+	<mvc:resources location="/images/" mapping="/images/**"/>
+	<mvc:resources location="/css/" mapping="/css/**"/>
+	<mvc:resources location="/js/" mapping="/js/**"/>
 
 	<bean id="viewResolver"
 		class="org.springframework.web.servlet.view.tiles3.TilesViewResolver" />
@@ -46,6 +48,8 @@
 
 	<bean id="postDao" class="com.wengs.web.model.dao.PostDao" />
 	<bean id="userDao" class="com.wengs.web.model.dao.UserDao" />
+
+
 	<bean id="securityService" class="com.wengs.web.security.SecurityService" />
 
 	<security:http use-expressions="true" auto-config="true">
@@ -57,10 +61,13 @@
 		<security:form-login login-processing-url="/j_spring_security_check"
 			login-page="/login.jsp" default-target-url="/secure/demo"
 			authentication-failure-url="/login.jsp?error=1" />
-		<security:logout logout-url="/j_spring_security_logout" />
+		<security:logout logout-url="/j_spring_security_logout" logout-success-url="/login.jsp"/>
 	</security:http>
 	<security:authentication-manager>
 		<security:authentication-provider
-			user-service-ref="securityService" />
+			user-service-ref="securityService">
+			<security:password-encoder hash="bcrypt" />
+			</security:authentication-provider>
+
 	</security:authentication-manager>
 </beans>
