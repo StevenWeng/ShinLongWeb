@@ -10,9 +10,8 @@
 		<put-attribute name="leftContent" value="/WEB-INF/template/default/leftContent.jsp"/>
 	</definition>
 	
-	<definition name="introduction" extends="defaultTemplate">
-		<put-attribute name="title" value="信隆大藥局-藥局介紹"/>
-		<put-attribute name="rightContent" value="/WEB-INF/views/home/introduction.jsp"/>
+	<definition name="page" extends="defaultTemplate" preparer="com.wengs.web.view.prepare.PagePrepare">
+		<put-attribute name="rightContent" value="/WEB-INF/views/home/page.jsp"/>
 	</definition>
 
 

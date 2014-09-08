@@ -7,10 +7,13 @@
 
 
 	<context:component-scan base-package="com.wengs.web.controller" />
+	<context:component-scan base-package="com.wengs.web.model.service" />
+	<context:component-scan base-package="com.wengs.web.model.dao" />
+	
 	<mvc:annotation-driven />
-	<mvc:resources location="/images/" mapping="/images/**"/>
-	<mvc:resources location="/css/" mapping="/css/**"/>
-	<mvc:resources location="/js/" mapping="/js/**"/>
+	<mvc:resources location="/images/" mapping="/images/**" />
+	<mvc:resources location="/css/" mapping="/css/**" />
+	<mvc:resources location="/js/" mapping="/js/**" />
 
 	<bean id="viewResolver"
 		class="org.springframework.web.servlet.view.tiles3.TilesViewResolver" />
@@ -24,12 +27,15 @@
 		</property>
 	</bean>
 
-	<bean id="dataSource"
-		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+	<bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource">
 		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
 		<property name="url" value="jdbc:mysql://localhost/shin_long_web" />
 		<property name="username" value="root" />
 		<property name="password" value="asdf1234" />
+		<property name="initialSize" value="5" />
+		<property name="maxTotal" value="10" />
+		<property name="poolPreparedStatements" value="true" />
+		<property name="maxOpenPreparedStatements" value="10" />
 	</bean>
 
 	<bean id="sessionFactory"
@@ -38,7 +44,6 @@
 		<property name="packagesToScan" value="com.wengs.web.model.entity" />
 		<property name="hibernateProperties">
 			<props>
-				<prop key="hibernate.hbm2ddl.auto">create</prop>
 				<prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
 				<prop key="show_sql">true</prop>
 				<prop key="format_sql">true</prop>
@@ -49,7 +54,7 @@
 	<bean id="postDao" class="com.wengs.web.model.dao.PostDao" />
 	<bean id="userDao" class="com.wengs.web.model.dao.UserDao" />
 
-
+	<!-- Security setting -->
 	<bean id="securityService" class="com.wengs.web.security.SecurityService" />
 
 	<security:http use-expressions="true" auto-config="true">
@@ -61,13 +66,15 @@
 		<security:form-login login-processing-url="/j_spring_security_check"
 			login-page="/login.jsp" default-target-url="/secure/demo"
 			authentication-failure-url="/login.jsp?error=1" />
-		<security:logout logout-url="/j_spring_security_logout" logout-success-url="/login.jsp"/>
+		<security:logout logout-url="/j_spring_security_logout"
+			logout-success-url="/login.jsp" />
 	</security:http>
 	<security:authentication-manager>
 		<security:authentication-provider
 			user-service-ref="securityService">
 			<security:password-encoder hash="bcrypt" />
-			</security:authentication-provider>
+		</security:authentication-provider>
 
 	</security:authentication-manager>
+	<!-- End Security setting -->
 </beans>
