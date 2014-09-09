@@ -14,6 +14,19 @@
 		<put-attribute name="rightContent" value="/WEB-INF/views/home/page.jsp"/>
 	</definition>
 
+	<!-- Management tiles -->
+	<definition name="managementTemplate" template="/WEB-INF/template/management/template.jsp">
+		<put-attribute name="header" value="/WEB-INF/template/management/header.jsp"/>
+		<put-attribute name="menu" value="/WEB-INF/template/management/menu.jsp"/>
+		<put-attribute name="footer" value="/WEB-INF/template/management/footer.jsp"/>
+	</definition>
+	
+	<definition name="pageManagement" extends="managementTemplate" >
+		<put-attribute name="title" value="後台-頁面管理" />
+		<put-attribute name="leftContent" value="/WEB-INF/views/management/page/pageManagementLeft.jsp"/>
+		<put-attribute name="rightContent" value="/WEB-INF/views/management/page/pageManagementRight.jsp"/>
+	</definition>
+	<!-- End Management tiles -->
 
 	<!-- Test tiles -->
 	<definition name="testTemplate" template="/WEB-INF/views/hello.jsp">

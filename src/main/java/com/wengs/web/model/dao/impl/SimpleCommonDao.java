@@ -28,6 +28,7 @@ public class SimpleCommonDao<T> implements CommonDao<T> {
 	public void create(T entity) {
 		Session session = getSessionFactory().openSession();
 		session.save(entity);
+		session.flush();
 		session.close();
 	}
 
@@ -35,6 +36,7 @@ public class SimpleCommonDao<T> implements CommonDao<T> {
 	public void update(T entity) {
 		Session session = getSessionFactory().openSession();
 		session.update(entity);
+		session.flush();
 		session.close();
 	}
 
@@ -42,6 +44,7 @@ public class SimpleCommonDao<T> implements CommonDao<T> {
 	public void createOrUpdate(T entity) {
 		Session session = getSessionFactory().openSession();
 		session.saveOrUpdate(entity);
+		session.flush();
 		session.close();
 	}
 
@@ -49,6 +52,7 @@ public class SimpleCommonDao<T> implements CommonDao<T> {
 	public void delete(T entity) {
 		Session session = getSessionFactory().openSession();
 		session.delete(entity);
+		session.flush();
 		session.close();
 	}
 
