@@ -6,7 +6,14 @@
 <script type="text/javascript">
 	$(function() {
 		CKEDITOR.config.contentsCss = '/css/style.css';
-		CKEDITOR.replace( 'editor1' );
+		CKEDITOR.replace( 'editor1' ,{
+			filebrowserBrowseUrl : '/CKFinderJava/ckfinder/ckfinder.html',
+			filebrowserImageBrowseUrl : '/CKFinderJava/ckfinder/ckfinder.html?type=Images',
+			filebrowserFlashBrowseUrl : '/CKFinderJava/ckfinder/ckfinder.html?type=Flash',
+			filebrowserUploadUrl : '/CKFinderJava/ckfinder/core/connector/java/connector.java?command=QuickUpload&type=Files',
+			filebrowserImageUploadUrl : '/CKFinderJava/ckfinder/core/connector/java/connector.java?command=QuickUpload&type=Images',
+			filebrowserFlashUploadUrl : '/CKFinderJava/ckfinder/core/connector/java/connector.java?command=QuickUpload&type=Flash'
+		});
 		CKEDITOR.plugins.registered['save'] = {
 				init : function(editor) {
 					var command = editor.addCommand('save', {
