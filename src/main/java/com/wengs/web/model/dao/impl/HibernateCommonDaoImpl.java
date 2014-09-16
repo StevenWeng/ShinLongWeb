@@ -13,13 +13,13 @@ import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 
 import com.wengs.web.model.dao.CommonDao;
 
-public class SimpleCommonDao<T> implements CommonDao<T> {
+public class HibernateCommonDaoImpl<T> implements CommonDao<T> {
 	private Class<T> genericClass;
 
 	@Autowired
 	private SessionFactory sessionFactory;
 
-	public SimpleCommonDao() {
+	public HibernateCommonDaoImpl() {
 		this.genericClass = (Class<T>) ((ParameterizedType) getClass()
 				.getGenericSuperclass()).getActualTypeArguments()[0];
 	}

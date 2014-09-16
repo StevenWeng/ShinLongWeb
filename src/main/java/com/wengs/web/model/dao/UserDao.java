@@ -11,10 +11,10 @@ import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
-import com.wengs.web.model.dao.impl.SimpleCommonDao;
+import com.wengs.web.model.dao.impl.HibernateCommonDaoImpl;
 import com.wengs.web.model.entity.User;
 
-public class UserDao extends SimpleCommonDao<User>{
+public class UserDao extends HibernateCommonDaoImpl<User>{
 	
 	@Override
 	public void update(User entity) {

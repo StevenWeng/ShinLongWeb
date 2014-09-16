@@ -11,8 +11,12 @@ public class Post {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
+	@Column(nullable = false)
 	private String title;
+	@Column(length = 8096)
 	private String context;
+	@Column(nullable = false)
+	private Date publishTs;
 	private Date modifyTs;
 
 	public Long getId() {
@@ -45,6 +49,14 @@ public class Post {
 
 	public void setModifyTs(Date modifyTs) {
 		this.modifyTs = modifyTs;
+	}
+
+	public Date getPublishTs() {
+		return publishTs;
+	}
+
+	public void setPublishTs(Date publishTs) {
+		this.publishTs = publishTs;
 	}
 
 }

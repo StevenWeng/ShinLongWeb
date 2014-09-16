@@ -22,7 +22,7 @@ public class PageService {
 
 	public Page getPageByName(String pageName) {
 		DetachedCriteria dc = DetachedCriteria.forClass(Page.class);
-		dc.add(Restrictions.eqOrIsNull("name", pageName));
+		dc.add(Restrictions.eq("name", pageName));
 		Page page = getPageDAO().findUniqeByCriteria(dc);
 		return page;
 	}
