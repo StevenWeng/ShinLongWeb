@@ -33,7 +33,9 @@ public class PostService {
 		Criteria criteria = session.createCriteria(Post.class);
 		criteria.setFirstResult(first).setMaxResults(pageSize);
 		criteria.addOrder(Order.desc("id"));
-		return criteria.list();
+		List<Post> posts = criteria.list();
+		session.close();
+		return posts;
 	}
 
 	public int getMaxPageNumber(int pageSize) {
@@ -66,7 +68,7 @@ public class PostService {
 	}
 
 	public Post getPostById(Long id) {
-		checkArgument(id >= 0, "id has to grader then 0");
+		checkArgument(id > 0, "id has to grader then 0");
 		return getPostDao().getById(id);
 	}
 

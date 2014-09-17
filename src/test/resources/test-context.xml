@@ -7,6 +7,8 @@
 
 	<context:component-scan base-package="com.wengs.web.model.dao" />
 	<context:component-scan base-package="com.wengs.web.model.service" />
+	<context:component-scan base-package="com.wengs.web.controller" />
+	<mvc:annotation-driven />
 
 	<bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource">
 		<property name="driverClassName" value="org.hsqldb.jdbcDriver" />

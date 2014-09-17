@@ -298,3 +298,8 @@ function setPageNo(event) {
 	setPageSubmit(event.data.page);
 	return;
 }
+function setPageSubmit(page){
+	if($('#pageNo') && page) $('#pageNo').val(page);
+	$('#mainPage').submit();
+    return;
+}
