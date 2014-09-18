@@ -15,22 +15,27 @@
 </script>
 
 <div class="right">
-	<h2>營養保健</h2>
+	<h2>營養保健-文章管理</h2>
 	<div class="tablelist">
 		<table class="table table-hover" width="568px">
 			<tr class="tablehead">
 				<th width="20%">時間</th>
 				<th>標題</th>
+				<th width="30%">操作</th>
 			</tr>
 			<c:forEach items="${posts }" var="post">
 				<tr class="tablerow">
 					<td><fmt:formatDate pattern="yyyy-MM-dd"
 							value="${post.publishTs }" /></td>
-					<td><a href="/post/detail/${post.id }">${post.title }</a></td>
+					<td>${post.title }</td>
+					<td><a href="/management/post/edit/${post.id }"
+						class="btn btn-success ">編輯</a> <a
+						href="/management/post/delete?id=${post.id }"
+						class="btn btn-success ">刪除</a></td>
 				</tr>
 			</c:forEach>
 		</table>
-		<form action="/post/list" method="post" id="mainPage">
+		<form action="/management/post/list" method="post" id="mainPage">
 			<div class="page"></div>
 		</form>
 	</div>

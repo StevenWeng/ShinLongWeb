@@ -25,17 +25,16 @@ a:hover { text-decoration: underline; color : #000; }
 }
 
 #header { 
-padding: 10px 0 20px 0;
-height:75px;
+padding: 10px 0 10px 0;
 }
 #header h1 {
 	font-size: 40px;
 	font-weight: 800;
 	letter-spacing: 10px;
-	padding-top: 24px;
+	padding-top: 12px;
 	padding-right: 0;
 	padding-bottom: 5px;
-	padding-left: 125px;
+	padding-left: 160px;
 	font-family: "微軟正黑體";
 }
 #header h1 a {
@@ -46,31 +45,28 @@ text-decoration: none;
 color: #57626a;
 text-decoration: none;
 }
-#header h2 {
+#header p{
 	color: #777;
 	font-size: 15px;
 	font-weight: 300;
 	letter-spacing: 4px;
 	line-height: 12px;
-	padding-top: 10px;
+	padding-top: 0px;
 	padding-right: 0;
 	padding-bottom: 0;
-	padding-left: 130px;
+	padding-left: 160px;
 }
 
 #header .logo{
-	height:80px;
-	width:103px;
+	height:110px;
+	width:137px;
 	float:left;
 }
 
 #header .marklisr {
-	
-	padding: 10px;
-	height: 60px;
-	
+	padding: 15px;
+	height: 120px;
 	float:right;
-		
 }
 
 #header .marklisr img{
@@ -132,16 +128,6 @@ width: 568px;
 float: right;
 text-align: justify;
 font-family: "微軟正黑體";
-}
-.right h2 {
-	color: #57626a;
-	font-size: 20px;
-	letter-spacing: 1px;
-	font-weight: 300;
-	padding : 15px 0 5px 10px;
-	font-family: "微軟正黑體";
-	background-image: url(/images/H2BK.jpg);
-	background-repeat: repeat-x;
 }
 
 .left {

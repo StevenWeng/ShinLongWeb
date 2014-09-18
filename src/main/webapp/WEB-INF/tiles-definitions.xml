@@ -29,12 +29,23 @@
 		<put-attribute name="header" value="/WEB-INF/template/management/header.jsp"/>
 		<put-attribute name="menu" value="/WEB-INF/template/management/menu.jsp"/>
 		<put-attribute name="footer" value="/WEB-INF/template/management/footer.jsp"/>
+		<put-attribute name="leftContent" value="/WEB-INF/template/management/emptyLeft.jsp"/>
 	</definition>
 	
 	<definition name="pageManagement" extends="managementTemplate" >
 		<put-attribute name="title" value="後台-頁面管理" />
 		<put-attribute name="leftContent" value="/WEB-INF/views/management/page/pageManagementLeft.jsp"/>
 		<put-attribute name="rightContent" value="/WEB-INF/views/management/page/pageManagementRight.jsp"/>
+	</definition>
+	
+	<definition name="postManagementList" extends="managementTemplate" >
+		<put-attribute name="title" value="後台-文章管理清單" />
+		<put-attribute name="rightContent" value="/WEB-INF/views/management/post/list.jsp"/>
+	</definition>
+	
+	<definition name="postManagementEditor" extends="managementTemplate" >
+		<put-attribute name="title" value="後台-文章編輯 " />
+		<put-attribute name="rightContent" value="/WEB-INF/views/management/post/editor.jsp"/>
 	</definition>
 	<!-- End Management tiles -->
 

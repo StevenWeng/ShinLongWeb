@@ -8,6 +8,8 @@
 <title><tiles:getAsString name="title" /></title>
 <link rel="stylesheet" type="text/css" href="/css/style.css"
 	media="screen" />
+<link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css"
+	media="screen" />
 <script language="javascript" src="/js/jquery-1.11.1.js"></script>
 <script language="javascript" src="/js/menu.js"></script>
 </head>

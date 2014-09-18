@@ -5,7 +5,7 @@
 	<script type="text/javascript" src="/js/ckeditor/ckeditor.js"></script>
 <script type="text/javascript">
 	$(function() {
-		CKEDITOR.config.contentsCss = '/css/style.css';
+		CKEDITOR.config.contentsCss = ['/css/style.css','/css/bootstrap.min.css'];
 		CKEDITOR.replace( 'editor1' ,{
 			filebrowserBrowseUrl : '/CKFinderJava/ckfinder/ckfinder.html',
 			filebrowserImageBrowseUrl : '/CKFinderJava/ckfinder/ckfinder.html?type=Images',
