@@ -16,6 +16,9 @@
 
 <div class="right">
 	<h2>營養保健-文章管理</h2>
+	<p class="text-right">
+		<a href="/management/post/create" class="btn btn-success ">建立文章</a>
+	</p>
 	<div class="tablelist">
 		<table class="table table-hover" width="568px">
 			<tr class="tablehead">

@@ -33,7 +33,7 @@ public class PostServiceTest {
 			post.setTitle("title"+i);
 			post.setContext("context"+i);
 			post.setPublishTs(new Date());
-			postService.createPost(post);
+			postService.createOrUpdatePost(post);
 		}
 	}
 
@@ -43,7 +43,7 @@ public class PostServiceTest {
 
 	@Test
 	public void testListDescOrderPostsByPage() {
-		List<Post> list = postService.listDescOrderPostsByPage(3, 9);
+		List<Post> list = postService.listDescOrderPostsByPage(3, 9,false);
 		assertEquals(2, list.size());
 	}
 

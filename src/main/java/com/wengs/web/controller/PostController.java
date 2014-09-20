@@ -1,5 +1,6 @@
 package com.wengs.web.controller;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,17 +26,21 @@ public class PostController {
 			Model model) {
 		int totalPages = getPostService().getMaxPageNumber(pageSize);
 		List<Post> posts = getPostService().listDescOrderPostsByPage(pageNo,
-				pageSize);
+				pageSize, true);
 		model.addAttribute("pageNo", pageNo);
 		model.addAttribute("pageSize", pageSize);
 		model.addAttribute("totalPages", totalPages);
 		model.addAttribute("posts", posts);
 		return "postList";
 	}
-	
+
 	@RequestMapping(value = "detail/{id}")
-	public String getPostDetail(@PathVariable Long id,Model model){
+	public String getPostDetail(@PathVariable Long id, Model model) {
 		Post post = getPostService().getPostById(id);
+		Date now = new Date();
+		if (post.getPublishTs().getTime() > now.getTime()) {
+			return "redirect:/post/list";
+		}
 		model.addAttribute("post", post);
 		return "postDetail";
 	}

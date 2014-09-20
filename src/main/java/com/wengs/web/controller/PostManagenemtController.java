@@ -35,7 +35,7 @@ public class PostManagenemtController {
 			Model model) {
 		int totalPages = getPostService().getMaxPageNumber(pageSize);
 		List<Post> posts = getPostService().listDescOrderPostsByPage(pageNo,
-				pageSize);
+				pageSize,false);
 		model.addAttribute("pageNo", pageNo);
 		model.addAttribute("pageSize", pageSize);
 		model.addAttribute("totalPages", totalPages);
@@ -55,32 +55,25 @@ public class PostManagenemtController {
 		return "postManagementEditor";
 	}
 
-	@RequestMapping(value = "create", method = RequestMethod.POST)
-	public String createPost(
-			@RequestParam("title") String title,
-			@RequestParam("context") String context,
-			@RequestParam("publishTs") @DateTimeFormat(pattern = "yyyy-MM-dd") Date publishTs) {
-		Post post = new Post();
-		post.setTitle(title);
-		post.setContext(context);
-		post.setPublishTs(publishTs);
-		getPostService().createPost(post);
-		return "postManagementList";
-	}
-
-	@RequestMapping(value = "update", method = RequestMethod.POST)
-	public String updatePost(
+	@RequestMapping(value = "createOrUpdate", method = RequestMethod.POST)
+	public String createOrUpdatePost(
 			@RequestParam("id") Long id,
 			@RequestParam("title") String title,
 			@RequestParam("context") String context,
-			@RequestParam("publishTs") @DateTimeFormat(pattern = "yyyy-MM-dd") Date publishTs) {
+			@RequestParam("publishTs") @DateTimeFormat(pattern = "yyyy-MM-dd") Date publishTs,
+			HttpSession session) {
 		Post post = new Post();
 		post.setId(id);
 		post.setTitle(title);
 		post.setContext(context);
 		post.setPublishTs(publishTs);
-		getPostService().updatePost(post);
-		return "postManagementList";
+		getPostService().createOrUpdatePost(post);
+		Integer pageNo = Optional.fromNullable(
+				(Integer) session.getAttribute("pageNo")).or(1);
+		Integer pageSize = Optional.fromNullable(
+				(Integer) session.getAttribute("pageSize")).or(10);
+		return "redirect:/management/post/list?pageNo=" + pageNo + "&pageSize="
+				+ pageSize;
 	}
 
 	@RequestMapping(value = "delete")

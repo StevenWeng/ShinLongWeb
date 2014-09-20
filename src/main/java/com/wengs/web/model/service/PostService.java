@@ -6,6 +6,7 @@ import java.util.List;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.criterion.Order;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -24,7 +25,7 @@ public class PostService {
 	}
 
 	@SuppressWarnings("unchecked")
-	public List<Post> listDescOrderPostsByPage(int pageNumber, int pageSize) {
+	public List<Post> listDescOrderPostsByPage(int pageNumber, int pageSize ,boolean filteUnexpired) {
 		checkArgument(pageSize > 0, "pageSize has to grader then 0.");
 		checkArgument(pageNumber > 0, "pageNumber has to grader then 0.");
 
@@ -32,6 +33,10 @@ public class PostService {
 		Session session = getPostDao().getSessionFactory().openSession();
 		Criteria criteria = session.createCriteria(Post.class);
 		criteria.setFirstResult(first).setMaxResults(pageSize);
+		if(filteUnexpired){
+			criteria.add(Restrictions.le("publishTs", new Date()));
+		}
+		criteria.addOrder(Order.desc("publishTs"));
 		criteria.addOrder(Order.desc("id"));
 		List<Post> posts = criteria.list();
 		session.close();
@@ -46,16 +51,11 @@ public class PostService {
 				/ pageSize;
 	}
 
-	public void createPost(Post post) {
-		checkNotNull(post, "post is null");
-		post.setModifyTs(new Date());
-		getPostDao().create(post);
-	}
 
-	public void updatePost(Post post) {
+	public void createOrUpdatePost(Post post) {
 		checkNotNull(post, "post is null");
 		post.setModifyTs(new Date());
-		getPostDao().update(post);
+		getPostDao().createOrUpdate(post);
 	}
 
 	public void deletePostById(Long id) {
