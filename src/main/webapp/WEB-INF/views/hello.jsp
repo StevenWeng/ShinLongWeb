@@ -17,6 +17,7 @@
 		<tiles:getAsString name="header"></tiles:getAsString>
 	</h1>
 	<h1>Hello ${user }</h1>
+	<h1>WorkDir ${workDir }</h1>
 	{{ 9999 }}
 
 	<br> {{ 9999+1 }}

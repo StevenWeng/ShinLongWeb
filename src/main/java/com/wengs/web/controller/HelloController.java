@@ -27,11 +27,8 @@ public class HelloController {
 
 	@RequestMapping(value = "hi")
 	public String hello(@RequestParam("user") String user, Model model) {
-		Post post = new Post();
-		post.setContext("test1");
-		post.setTitle("t");
-		post.setModifyTs(new Date());
-		getPostDao().create(post);
+		String workDir = System.getProperty("catalina.home");
+		model.addAttribute("workDir", workDir);
 		model.addAttribute("user", user);
 		return "hello";
 	}
