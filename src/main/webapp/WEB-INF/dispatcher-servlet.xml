@@ -14,6 +14,7 @@
 	<mvc:resources location="/images/" mapping="/images/**" />
 	<mvc:resources location="/css/" mapping="/css/**" />
 	<mvc:resources location="/js/" mapping="/js/**" />
+	<mvc:resources location="/pdf/" mapping="/pdf/**" />
 	<mvc:resources location="/" mapping="/*.ico" />
 
 	<bean id="viewResolver"
@@ -51,6 +52,10 @@
 				<prop key="format_sql">true</prop>
 			</props>
 		</property>
+	</bean>
+	
+	<bean id="baseDir" class="java.lang.String">
+		<constructor-arg value="D:/Workspace/MVN/.metadata/.plugins/org.eclipse.wst.server.core/tmp0/wtpwebapps/ShinLongWeb"/>
 	</bean>
 
 	<bean id="postDao" class="com.wengs.web.model.dao.PostDao" />

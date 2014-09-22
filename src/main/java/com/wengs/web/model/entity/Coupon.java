@@ -16,7 +16,6 @@ public class Coupon {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	private String title;
-	@Column(nullable = false)
 	private String imagePath;
 	private String thumbImagePath;
 	private String pdfPath; 

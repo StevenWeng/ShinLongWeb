@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 
 import com.wengs.web.model.dao.CouponDao;
 import com.wengs.web.model.entity.Coupon;
+import com.wengs.web.model.entity.Edm;
 import com.wengs.web.util.ImageUtil;
 
 @Service

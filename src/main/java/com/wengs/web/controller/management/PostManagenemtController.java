@@ -1,4 +1,4 @@
-package com.wengs.web.controller;
+package com.wengs.web.controller.management;
 
 import java.util.Date;
 import java.util.List;

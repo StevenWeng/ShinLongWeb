@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Image;
+import com.itextpdf.text.pdf.PdfStructTreeController.returnType;
 import com.itextpdf.text.pdf.PdfWriter;
 
 public class ImageUtil {
@@ -30,8 +31,8 @@ public class ImageUtil {
 		}
 	}
 
-	public static BufferedImage resizeImage(BufferedImage originalImage, int width,
-			int height) {
+	public static BufferedImage resizeImage(BufferedImage originalImage,
+			int width, int height) {
 		int type = originalImage.getType() == 0 ? BufferedImage.TYPE_INT_ARGB
 				: originalImage.getType();
 		BufferedImage resizedImage = new BufferedImage(width, height, type);
@@ -40,10 +41,8 @@ public class ImageUtil {
 		g.dispose();
 		return resizedImage;
 	}
-	
-	
 
-	private static String getFormat(String imageName) {
+	public static String getFormat(String imageName) {
 		String tmp = imageName.toLowerCase();
 
 		if (tmp.endsWith(".png"))
@@ -56,8 +55,8 @@ public class ImageUtil {
 			return "JPEG";
 		if (tmp.endsWith(".tiff"))
 			return "TIFF";
-
 		return "UNKNOWN";
 	}
+
 
 }
