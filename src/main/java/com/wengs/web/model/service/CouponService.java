@@ -3,18 +3,24 @@ package com.wengs.web.model.service;
 import static com.google.common.base.Preconditions.*;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.Date;
 import java.util.List;
+
+import javax.imageio.ImageIO;
 
 import org.hibernate.criterion.DetachedCriteria;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import com.itextpdf.text.DocumentException;
 import com.wengs.web.model.dao.CouponDao;
 import com.wengs.web.model.entity.Coupon;
 import com.wengs.web.model.entity.Edm;
 import com.wengs.web.util.ImageUtil;
+import com.wengs.web.util.PdfUtil;
 
 @Service
 public class CouponService {
@@ -39,14 +45,18 @@ public class CouponService {
 		return getCouponDao().getById(id);
 	}
 
-	public void createOrUpdateCoupon(Coupon coupon) {
+	public void createCoupon(Coupon coupon) {
 		checkNotNull(coupon, "coupon is null");
-		if (coupon.getId() != null) {
-			Coupon orgCoupon = getCouponById(coupon.getId());
-			deleteResourceFiles(orgCoupon);
-		}
 		coupon.setModifyTs(new Date());
-		getCouponDao().createOrUpdate(coupon);
+		getCouponDao().create(coupon);
+	}
+
+	public void updateCoupon(Coupon coupon) {
+		checkNotNull(coupon, "coupon is null");
+		Coupon orgCoupon = getCouponById(coupon.getId());
+		compareAndDeleteResourceFiles(orgCoupon, coupon);
+		coupon.setModifyTs(new Date());
+		getCouponDao().update(coupon);
 	}
 
 	public void deleteCouponById(Long id) {
@@ -56,11 +66,41 @@ public class CouponService {
 		getCouponDao().delete(deleteCoupon);
 	}
 
+	public void saveResourceFiles(Coupon coupon, MultipartFile imageFile,
+			MultipartFile thumbImageFile) throws IOException, DocumentException {
+		if (!imageFile.isEmpty()) {
+			ImageUtil.saveImage(ImageIO.read(imageFile.getInputStream()),
+					new File(getBaseDir(), coupon.getImagePath()));
+			PdfUtil.saveToPdf(ImageIO.read(imageFile.getInputStream()),
+					new File(getBaseDir(), coupon.getPdfPath()));
+		}
+		if (!thumbImageFile.isEmpty()) {
+			ImageUtil.saveImage(ImageIO.read(thumbImageFile.getInputStream()),
+					new File(getBaseDir(), coupon.getThumbImagePath()));
+		}
+	}
+
 	private void deleteResourceFiles(Coupon coupon) {
 		ImageUtil.deleteImage(new File(getBaseDir(), coupon.getImagePath()));
 		ImageUtil
 				.deleteImage(new File(getBaseDir(), coupon.getThumbImagePath()));
 		ImageUtil.deleteImage(new File(getBaseDir(), coupon.getPdfPath()));
+	}
+
+	private void compareAndDeleteResourceFiles(Coupon oldCoupon,
+			Coupon newCoupon) {
+		if (oldCoupon.getImagePath().equals(newCoupon.getImagePath())) {
+			ImageUtil.deleteImage(new File(getBaseDir(), oldCoupon
+					.getImagePath()));
+		}
+		if (oldCoupon.getThumbImagePath().equals(newCoupon.getThumbImagePath())) {
+			ImageUtil.deleteImage(new File(getBaseDir(), oldCoupon
+					.getThumbImagePath()));
+		}
+		if (oldCoupon.getPdfPath().equals(newCoupon.getPdfPath())) {
+			ImageUtil
+					.deleteImage(new File(getBaseDir(), oldCoupon.getPdfPath()));
+		}
 	}
 
 	public CouponDao getCouponDao() {

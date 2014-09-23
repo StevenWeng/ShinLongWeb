@@ -54,9 +54,15 @@
 		</property>
 	</bean>
 	
+	<!-- Web Setting -->
 	<bean id="baseDir" class="java.lang.String">
 		<constructor-arg value="D:/Workspace/MVN/.metadata/.plugins/org.eclipse.wst.server.core/tmp0/wtpwebapps/ShinLongWeb"/>
 	</bean>
+	<bean id="edmThumbWidth" class="java.lang.Integer">
+		<constructor-arg value="400"/>
+	</bean>
+	
+	<!-- End Web Setting -->
 
 	<bean id="postDao" class="com.wengs.web.model.dao.PostDao" />
 	<bean id="userDao" class="com.wengs.web.model.dao.UserDao" />

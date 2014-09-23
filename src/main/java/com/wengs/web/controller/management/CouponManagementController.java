@@ -1,11 +1,7 @@
 package com.wengs.web.controller.management;
 
-import java.io.File;
-import java.io.IOException;
 import java.util.Date;
 import java.util.List;
-
-import javax.imageio.ImageIO;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -17,19 +13,15 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.pdf.codec.Base64;
 import com.wengs.web.model.entity.Coupon;
 import com.wengs.web.model.service.CouponService;
-import com.wengs.web.util.ImageUtil;
-import com.wengs.web.util.PdfUtil;
 
 @Controller
 @RequestMapping(value = "/management/coupon")
 public class CouponManagementController {
 	@Autowired
 	private CouponService couponService;
-	@Autowired
-	private String baseDir;
 
 	@RequestMapping(value = "list")
 	public String listAllCoupon(Model model) {
@@ -40,7 +32,47 @@ public class CouponManagementController {
 
 	@RequestMapping(value = "create", method = RequestMethod.GET)
 	public String createCoupon() {
-		return "couponManagementEditor";
+		return "couponManagementCreator";
+	}
+
+	@RequestMapping(value = "create", method = RequestMethod.POST)
+	public String createCoupon(
+			@RequestParam("title") String title,
+			@RequestParam("imageFile") MultipartFile imageFile,
+			@RequestParam("thumbImageFile") MultipartFile thumbImageFile,
+			@RequestParam("startDate") @DateTimeFormat(pattern = "yyyy-MM-dd") Date startDate,
+			@RequestParam("endDate") @DateTimeFormat(pattern = "yyyy-MM-dd") Date endDate,
+			Model model) {
+		if (imageFile.isEmpty() || thumbImageFile.isEmpty()) {
+			model.addAttribute("errorMessage", "Files are empty.");
+			return "couponManagementCreator";
+		}
+
+		String imagePath = "images/" + imageFile.getOriginalFilename();
+
+		String thumbImagePath = "images/"
+				+ thumbImageFile.getOriginalFilename();
+		String pdfPath = "pdf/"
+				+ Base64.encodeObject(imageFile.getOriginalFilename()) + ".pdf";
+		// create
+		Coupon coupon = new Coupon();
+		coupon.setTitle(title);
+		coupon.setImagePath(imagePath);
+		coupon.setThumbImagePath(thumbImagePath);
+		coupon.setPdfPath(pdfPath);
+		coupon.setStartDate(startDate);
+		coupon.setEndDate(endDate);
+		try {
+			getCouponService().saveResourceFiles(coupon, imageFile,
+					thumbImageFile);
+		} catch (Exception e) {
+			e.printStackTrace();
+			model.addAttribute("errorMessage",
+					"Files save error :" + e.getMessage());
+			return "couponManagementCreator";
+		}
+		getCouponService().createCoupon(coupon);
+		return "redirect:/management/coupon/list";
 	}
 
 	@RequestMapping(value = "edit/{id}", method = RequestMethod.GET)
@@ -50,8 +82,8 @@ public class CouponManagementController {
 		return "couponManagementEditor";
 	}
 
-	@RequestMapping(value = "createOrUpdate", method = RequestMethod.POST)
-	public String createOrUpdateCoupon(
+	@RequestMapping(value = "update", method = RequestMethod.POST)
+	public String updateCoupon(
 			@RequestParam("id") Long id,
 			@RequestParam("title") String title,
 			@RequestParam("imageFile") MultipartFile imageFile,
@@ -59,54 +91,38 @@ public class CouponManagementController {
 			@RequestParam("startDate") @DateTimeFormat(pattern = "yyyy-MM-dd") Date startDate,
 			@RequestParam("endDate") @DateTimeFormat(pattern = "yyyy-MM-dd") Date endDate,
 			Model model) {
-		if (imageFile.isEmpty() || thumbImageFile.isEmpty()) {
-			model.addAttribute("errorMessage", "Files are empty.");
-			if (id != null) {
-				model.addAttribute("coupon",
-						getCouponService().getCouponById(id));
-			}
-			return "couponManagementEditor";
+		Coupon coupon = getCouponService().getCouponById(id);
+		coupon.setTitle(title);
+		if (!imageFile.isEmpty()) {
+			coupon.setImagePath("images/" + imageFile.getOriginalFilename());
+			coupon.setPdfPath("pdf/"
+					+ Base64.encodeObject(imageFile.getOriginalFilename())
+					+ ".pdf");
 		}
+		if (!thumbImageFile.isEmpty()) {
+			coupon.setThumbImagePath("images/"
+					+ thumbImageFile.getOriginalFilename());
+		}
+		coupon.setStartDate(startDate);
+		coupon.setEndDate(endDate);
 		// save files
-		Date nowDate = new Date();
-		String imagePath = "images/coupon-image"
-				+ nowDate.getTime()
-				+ "."
-				+ ImageUtil.getFormat(imageFile.getOriginalFilename())
-						.toLowerCase();
-		String thumbImagePath = "images/coupon-thumb-image"
-				+ nowDate.getTime()
-				+ "."
-				+ ImageUtil.getFormat(thumbImageFile.getOriginalFilename())
-						.toLowerCase();
-		String pdfPath = "pdf/coupon-" + nowDate.getTime() + ".pdf";
 		try {
-			ImageUtil.saveImage(ImageIO.read(imageFile.getInputStream()),
-					new File(getBaseDir(), imagePath));
-			ImageUtil.saveImage(ImageIO.read(thumbImageFile.getInputStream()),
-					new File(getBaseDir(), thumbImagePath));
-			PdfUtil.saveToPdf(ImageIO.read(imageFile.getInputStream()),
-					new File(getBaseDir(), pdfPath));
+			getCouponService().saveResourceFiles(coupon, imageFile,
+					thumbImageFile);
 		} catch (Exception e) {
 			e.printStackTrace();
 			model.addAttribute("errorMessage",
 					"Files save error :" + e.getMessage());
-			if (id != null) {
-				model.addAttribute("coupon",
-						getCouponService().getCouponById(id));
-			}
+			model.addAttribute("coupon", coupon);
 			return "couponManagementEditor";
 		}
-		// create or update
-		Coupon coupon = new Coupon();
-		coupon.setId(id);
-		coupon.setTitle(title);
-		coupon.setImagePath(imagePath);
-		coupon.setThumbImagePath(thumbImagePath);
-		coupon.setPdfPath(pdfPath);
-		coupon.setStartDate(startDate);
-		coupon.setEndDate(endDate);
-		getCouponService().createOrUpdateCoupon(coupon);
+		getCouponService().updateCoupon(coupon);
+		return "redirect:/management/coupon/list";
+	}
+
+	@RequestMapping(value = "delete")
+	public String deleteCoupon(@RequestParam("id") Long id) {
+		getCouponService().deleteCouponById(id);
 		return "redirect:/management/coupon/list";
 	}
 
@@ -118,11 +134,4 @@ public class CouponManagementController {
 		this.couponService = couponService;
 	}
 
-	public String getBaseDir() {
-		return baseDir;
-	}
-
-	public void setBaseDir(String baseDir) {
-		this.baseDir = baseDir;
-	}
 }
