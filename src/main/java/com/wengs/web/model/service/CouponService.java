@@ -89,15 +89,15 @@ public class CouponService {
 
 	private void compareAndDeleteResourceFiles(Coupon oldCoupon,
 			Coupon newCoupon) {
-		if (oldCoupon.getImagePath().equals(newCoupon.getImagePath())) {
+		if (!oldCoupon.getImagePath().equals(newCoupon.getImagePath())) {
 			ImageUtil.deleteImage(new File(getBaseDir(), oldCoupon
 					.getImagePath()));
 		}
-		if (oldCoupon.getThumbImagePath().equals(newCoupon.getThumbImagePath())) {
+		if (!oldCoupon.getThumbImagePath().equals(newCoupon.getThumbImagePath())) {
 			ImageUtil.deleteImage(new File(getBaseDir(), oldCoupon
 					.getThumbImagePath()));
 		}
-		if (oldCoupon.getPdfPath().equals(newCoupon.getPdfPath())) {
+		if (!oldCoupon.getPdfPath().equals(newCoupon.getPdfPath())) {
 			ImageUtil
 					.deleteImage(new File(getBaseDir(), oldCoupon.getPdfPath()));
 		}

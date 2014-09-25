@@ -9,7 +9,7 @@
 	<context:component-scan base-package="com.wengs.web.controller" />
 	<context:component-scan base-package="com.wengs.web.model.service" />
 	<context:component-scan base-package="com.wengs.web.model.dao" />
-	
+
 	<mvc:annotation-driven />
 	<mvc:resources location="/images/" mapping="/images/**" />
 	<mvc:resources location="/css/" mapping="/css/**" />
@@ -53,15 +53,20 @@
 			</props>
 		</property>
 	</bean>
-	
+
+	<bean id="multipartResolver"
+		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+	</bean>
+
 	<!-- Web Setting -->
 	<bean id="baseDir" class="java.lang.String">
-		<constructor-arg value="D:/Workspace/MVN/.metadata/.plugins/org.eclipse.wst.server.core/tmp0/wtpwebapps/ShinLongWeb"/>
+		<constructor-arg
+			value="D:/Workspace/MVN/.metadata/.plugins/org.eclipse.wst.server.core/tmp0/wtpwebapps/ShinLongWeb" />
 	</bean>
 	<bean id="edmThumbWidth" class="java.lang.Integer">
-		<constructor-arg value="400"/>
+		<constructor-arg value="400" />
 	</bean>
-	
+
 	<!-- End Web Setting -->
 
 	<bean id="postDao" class="com.wengs.web.model.dao.PostDao" />

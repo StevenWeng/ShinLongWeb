@@ -47,6 +47,36 @@
 		<put-attribute name="title" value="後台-文章編輯 " />
 		<put-attribute name="rightContent" value="/WEB-INF/views/management/post/editor.jsp"/>
 	</definition>
+	
+	<definition name="edmManagementList" extends="managementTemplate" >
+		<put-attribute name="title" value="後台- EDM管理清單 " />
+		<put-attribute name="rightContent" value="/WEB-INF/views/management/edm/list.jsp"/>
+	</definition>
+	
+	<definition name="edmManagementEditor" extends="managementTemplate" >
+		<put-attribute name="title" value="後台- EDM編輯 " />
+		<put-attribute name="rightContent" value="/WEB-INF/views/management/edm/editor.jsp"/>
+	</definition>
+	
+	<definition name="edmManagementCreator" extends="managementTemplate" >
+		<put-attribute name="title" value="後台- EDM建立" />
+		<put-attribute name="rightContent" value="/WEB-INF/views/management/edm/creator.jsp"/>
+	</definition>
+	
+	<definition name="couponManagementList" extends="managementTemplate" >
+		<put-attribute name="title" value="後台- 優惠券管理清單 " />
+		<put-attribute name="rightContent" value="/WEB-INF/views/management/coupon/list.jsp"/>
+	</definition>
+	
+	<definition name="couponManagementEditor" extends="managementTemplate" >
+		<put-attribute name="title" value="後台- 優惠券編輯 " />
+		<put-attribute name="rightContent" value="/WEB-INF/views/management/coupon/editor.jsp"/>
+	</definition>
+	 
+	<definition name="couponManagementCreator" extends="managementTemplate" >
+		<put-attribute name="title" value="後台- 優惠券建立" />
+		<put-attribute name="rightContent" value="/WEB-INF/views/management/coupon/creator.jsp"/>
+	</definition>
 	<!-- End Management tiles -->
 
 	<!-- Test tiles -->

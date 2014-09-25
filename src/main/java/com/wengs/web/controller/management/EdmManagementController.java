@@ -58,9 +58,9 @@ public class EdmManagementController {
 			model.addAttribute("errorMessage", "Files are empty.");
 			return "edmManagementCreator";
 		}
-		String imagePath = "images/" + imageFile.getOriginalFilename();
+		String imagePath = "/images/edm/" + imageFile.getOriginalFilename();
 
-		String thumbImagePath = "images/thumb-"
+		String thumbImagePath = "/images/edm/thumb-"
 				+ imageFile.getOriginalFilename();
 		Edm edm = new Edm();
 		edm.setTitle(title);
@@ -102,8 +102,8 @@ public class EdmManagementController {
 		edm.setTitle(title);
 		edm.setPublishTs(publishTs);
 		if (!imageFile.isEmpty()) {
-			edm.setImagePath("images/" + imageFile.getOriginalFilename());
-			edm.setThumbImagePath("images/thumb-"
+			edm.setImagePath("/images/edm/" + imageFile.getOriginalFilename());
+			edm.setThumbImagePath("/images/edm/thumb-"
 					+ imageFile.getOriginalFilename());
 		}
 		// save files

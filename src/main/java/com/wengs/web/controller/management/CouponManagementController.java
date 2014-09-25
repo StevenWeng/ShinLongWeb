@@ -48,11 +48,11 @@ public class CouponManagementController {
 			return "couponManagementCreator";
 		}
 
-		String imagePath = "images/" + imageFile.getOriginalFilename();
+		String imagePath = "/images/coupon/" + imageFile.getOriginalFilename();
 
-		String thumbImagePath = "images/"
+		String thumbImagePath = "/images/coupon/"
 				+ thumbImageFile.getOriginalFilename();
-		String pdfPath = "pdf/"
+		String pdfPath = "/pdf/"
 				+ Base64.encodeObject(imageFile.getOriginalFilename()) + ".pdf";
 		// create
 		Coupon coupon = new Coupon();
@@ -94,13 +94,13 @@ public class CouponManagementController {
 		Coupon coupon = getCouponService().getCouponById(id);
 		coupon.setTitle(title);
 		if (!imageFile.isEmpty()) {
-			coupon.setImagePath("images/" + imageFile.getOriginalFilename());
-			coupon.setPdfPath("pdf/"
+			coupon.setImagePath("/images/coupon/" + imageFile.getOriginalFilename());
+			coupon.setPdfPath("/pdf/"
 					+ Base64.encodeObject(imageFile.getOriginalFilename())
 					+ ".pdf");
 		}
 		if (!thumbImageFile.isEmpty()) {
-			coupon.setThumbImagePath("images/"
+			coupon.setThumbImagePath("/images/coupon/"
 					+ thumbImageFile.getOriginalFilename());
 		}
 		coupon.setStartDate(startDate);

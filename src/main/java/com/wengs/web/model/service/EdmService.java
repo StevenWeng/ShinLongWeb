@@ -99,7 +99,7 @@ public class EdmService {
 			BufferedImage thumbImage = generateThumbImage(image);
 			ImageUtil.saveImage(image,
 					new File(getBaseDir(), edm.getImagePath()));
-			PdfUtil.saveToPdf(thumbImage,
+			ImageUtil.saveImage(thumbImage,
 					new File(getBaseDir(), edm.getThumbImagePath()));
 		}
 	}
@@ -110,11 +110,11 @@ public class EdmService {
 	}
 
 	private void compareAndDeleteResourceFiles(Edm oldEdm, Edm newEdm) {
-		if (oldEdm.getImagePath().equals(newEdm.getImagePath())) {
+		if (!oldEdm.getImagePath().equals(newEdm.getImagePath())) {
 			ImageUtil
 					.deleteImage(new File(getBaseDir(), oldEdm.getImagePath()));
 		}
-		if (oldEdm.getThumbImagePath().equals(newEdm.getThumbImagePath())) {
+		if (!oldEdm.getThumbImagePath().equals(newEdm.getThumbImagePath())) {
 			ImageUtil.deleteImage(new File(getBaseDir(), oldEdm
 					.getThumbImagePath()));
 		}
