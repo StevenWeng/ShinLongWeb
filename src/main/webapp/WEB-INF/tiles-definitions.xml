@@ -3,14 +3,14 @@
        "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
        "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
 <tiles-definitions>
-	<definition name="defaultTemplate" template="/WEB-INF/template/default/template.jsp">
+	<definition name="defaultTemplate" template="/WEB-INF/template/default/template.jsp" preparer="defaultTemplatePrepare">
 		<put-attribute name="header" value="/WEB-INF/template/default/header.jsp"/>
 		<put-attribute name="menu" value="/WEB-INF/template/default/menu.jsp"/>
 		<put-attribute name="footer" value="/WEB-INF/template/default/footer.jsp"/>
 		<put-attribute name="leftContent" value="/WEB-INF/template/default/leftContent.jsp"/>
 	</definition>
 	
-	<definition name="page" extends="defaultTemplate" preparer="com.wengs.web.view.prepare.PagePrepare">
+	<definition name="page" extends="defaultTemplate">
 		<put-attribute name="rightContent" value="/WEB-INF/views/home/page.jsp"/>
 	</definition>
 	
@@ -22,6 +22,11 @@
 	<definition name="postDetail" extends="defaultTemplate" >
 		<put-attribute name="title" value="信隆大藥局-營養保健"/>
 		<put-attribute name="rightContent" value="/WEB-INF/views/post/detail.jsp"/>
+	</definition>
+	
+	<definition name="promotion" extends="defaultTemplate" >
+		<put-attribute name="title" value="信隆大藥局-促銷活動"/>
+		<put-attribute name="rightContent" value="/WEB-INF/views/promotion/index.jsp"/>
 	</definition>
 
 	<!-- Management tiles -->

@@ -12,6 +12,7 @@ import javax.imageio.ImageIO;
 
 import org.hibernate.Criteria;
 import org.hibernate.Session;
+import org.hibernate.criterion.DetachedCriteria;
 import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,6 +36,13 @@ public class EdmService {
 	@Autowired
 	private EdmDao edmDao;
 
+	public List<Edm> listAllDescEdms(){
+		DetachedCriteria dc = DetachedCriteria.forClass(Edm.class);
+		dc.addOrder(Order.desc("publishTs"));
+		dc.addOrder(Order.desc("id"));
+		return getEdmDao().findByCriteria(dc);
+	}
+	
 	@SuppressWarnings("unchecked")
 	public List<Edm> listEdmByPage(int pageNumber, int pageSize) {
 		checkArgument(pageSize > 0, "pageSize has to grader then 0.");

@@ -15,6 +15,7 @@
 	<mvc:resources location="/css/" mapping="/css/**" />
 	<mvc:resources location="/js/" mapping="/js/**" />
 	<mvc:resources location="/pdf/" mapping="/pdf/**" />
+	<mvc:resources location="/fonts/" mapping="/fonts/**" />
 	<mvc:resources location="/" mapping="/*.ico" />
 
 	<bean id="viewResolver"
@@ -27,6 +28,8 @@
 				<value>/WEB-INF/tiles-definitions.xml</value>
 			</list>
 		</property>
+		<property name="preparerFactoryClass"  
+        value="org.springframework.web.servlet.view.tiles3.SpringBeanPreparerFactory" />
 	</bean>
 
 	<bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource">
@@ -64,10 +67,14 @@
 			value="D:/Workspace/MVN/.metadata/.plugins/org.eclipse.wst.server.core/tmp0/wtpwebapps/ShinLongWeb" />
 	</bean>
 	<bean id="edmThumbWidth" class="java.lang.Integer">
-		<constructor-arg value="400" />
+		<constructor-arg value="600" />
 	</bean>
 
 	<!-- End Web Setting -->
+	
+	<!-- Tiles Prepares Setting -->
+	<bean id="defaultTemplatePrepare" class="com.wengs.web.view.prepare.DefaultTemplatePrepare" />
+	<!-- End Tiles Prepares Setting -->
 
 	<bean id="postDao" class="com.wengs.web.model.dao.PostDao" />
 	<bean id="userDao" class="com.wengs.web.model.dao.UserDao" />

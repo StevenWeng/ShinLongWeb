@@ -7,7 +7,7 @@
 		<li><a href="#">交通位置</a></li>
 		<li><a href="/post/list">營養保健</a></li>
 		<li><a href="#">產品資訊</a></li>
-		<li><a href="#">活動專區</a></li>
+		<li><a href="/promotion/">促銷活動</a></li>
 		<li><a href="#">人才招募</a></li>
 		<li><a href="#">聯絡我們</a></li>
 	</ul>

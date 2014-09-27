@@ -12,7 +12,7 @@
 </script>
 
 <div class="right">
-	<h2>EDM管理</h2>
+	<h2>優惠券管理</h2>
 	<p class="text-right">
 		<a href="/management/coupon/create" class="btn btn-success ">建立優惠券</a>
 	</p>
