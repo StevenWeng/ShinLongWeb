@@ -83,10 +83,8 @@
 	<bean id="securityService" class="com.wengs.web.security.SecurityService" />
 
 	<security:http use-expressions="true" auto-config="true">
-		<security:intercept-url pattern="/secure/**"
-			access="hasRole('USER')" />
-		<security:intercept-url pattern="/login.jsp"
-			access="isAnonymous()" />
+		<security:intercept-url pattern="/secure/**" access="hasRole('USER')" />
+		<security:intercept-url pattern="/login.jsp" access="isAnonymous()" />
 		<security:intercept-url pattern="/**" access="permitAll" />
 		<security:form-login login-processing-url="/j_spring_security_check"
 			login-page="/login.jsp" default-target-url="/secure/demo"

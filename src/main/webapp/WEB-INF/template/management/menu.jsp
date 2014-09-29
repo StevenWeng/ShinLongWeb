@@ -6,6 +6,6 @@
 		<li><a href="/management/edm/list">EDM管理</a></li>
 		<li><a href="/management/coupon/list">優惠券管理</a></li>
 		<li><a href="/management/post/list">文章管理</a></li>
-		<li><a href="#">帳號管理</a></li>
+		<li><a href="/management/user/list">帳號管理</a></li>
 	</ul>
 </div>

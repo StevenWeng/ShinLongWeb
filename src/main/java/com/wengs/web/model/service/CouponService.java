@@ -1,6 +1,7 @@
 package com.wengs.web.model.service;
 
-import static com.google.common.base.Preconditions.*;
+import static com.google.common.base.Preconditions.checkArgument;
+import static com.google.common.base.Preconditions.checkNotNull;
 
 import java.io.File;
 import java.io.IOException;
@@ -18,7 +19,6 @@ import org.springframework.web.multipart.MultipartFile;
 import com.itextpdf.text.DocumentException;
 import com.wengs.web.model.dao.CouponDao;
 import com.wengs.web.model.entity.Coupon;
-import com.wengs.web.model.entity.Edm;
 import com.wengs.web.util.ImageUtil;
 import com.wengs.web.util.PdfUtil;
 

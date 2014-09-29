@@ -82,6 +82,16 @@
 		<put-attribute name="title" value="後台- 優惠券建立" />
 		<put-attribute name="rightContent" value="/WEB-INF/views/management/coupon/creator.jsp"/>
 	</definition>
+	
+	<definition name="userManagementList" extends="managementTemplate" >
+		<put-attribute name="title" value="後台- 使用者清單" />
+		<put-attribute name="rightContent" value="/WEB-INF/views/management/user/list.jsp"/>
+	</definition>
+	
+	<definition name="userManagementCreator" extends="managementTemplate" >
+		<put-attribute name="title" value="後台- 使用者建立" />
+		<put-attribute name="rightContent" value="/WEB-INF/views/management/user/creator.jsp"/>
+	</definition>
 	<!-- End Management tiles -->
 
 	<!-- Test tiles -->
