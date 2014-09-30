@@ -84,13 +84,14 @@
 
 	<security:http use-expressions="true" auto-config="true">
 		<security:intercept-url pattern="/secure/**" access="hasRole('USER')" />
-		<security:intercept-url pattern="/login.jsp" access="isAnonymous()" />
+		<security:intercept-url pattern="/management/**" access="hasRole('USER')" />
+		<security:intercept-url pattern="/login" access="isAnonymous()" />
 		<security:intercept-url pattern="/**" access="permitAll" />
 		<security:form-login login-processing-url="/j_spring_security_check"
-			login-page="/login.jsp" default-target-url="/secure/demo"
-			authentication-failure-url="/login.jsp?error=1" />
-		<security:logout logout-url="/j_spring_security_logout"
-			logout-success-url="/login.jsp" />
+			login-page="/login" default-target-url="/management/page/"
+			authentication-failure-url="/login?error=1" />
+		<security:logout logout-url="/logout"
+			logout-success-url="/login" />
 	</security:http>
 	<security:authentication-manager>
 		<security:authentication-provider

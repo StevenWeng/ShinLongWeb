@@ -1,4 +1,5 @@
 <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles"%>
+<%@ taglib prefix="security" uri="http://www.springframework.org/security/tags" %>
 <%@ page language="java" contentType="text/html; charset=utf8"
 	pageEncoding="utf8"%>
 
@@ -13,6 +14,7 @@
 <title>HELLO</title>
 </head>
 <body ng-app>
+	<h1>登入使用者 <security:authentication property="principal.username"></security:authentication>  </h1>
 	<h1>
 		<tiles:getAsString name="header"></tiles:getAsString>
 	</h1>

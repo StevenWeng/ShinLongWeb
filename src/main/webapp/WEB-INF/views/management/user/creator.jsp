@@ -41,7 +41,7 @@
 
 			<p class="text-right">
 				<input type="submit" class="btn btn-success" value="儲存" /> <a
-					href="javascript:history.back()" class="btn btn-success">返回</a>
+					href="/management/user/list" class="btn btn-success">返回</a>
 			</p>
 		</form>
 	</div>

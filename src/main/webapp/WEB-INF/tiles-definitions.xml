@@ -92,8 +92,17 @@
 		<put-attribute name="title" value="後台- 使用者建立" />
 		<put-attribute name="rightContent" value="/WEB-INF/views/management/user/creator.jsp"/>
 	</definition>
+	
+	<definition name="userManagementChangePwd" extends="managementTemplate" >
+		<put-attribute name="title" value="後台- 使用者修改密碼" />
+		<put-attribute name="rightContent" value="/WEB-INF/views/management/user/changePwd.jsp"/>
+	</definition>
 	<!-- End Management tiles -->
+	<!-- Login tiles -->
+	<definition name="loginForm" template="/WEB-INF/views/login.jsp"/>
+	<!-- End Login tiles -->
 
+	
 	<!-- Test tiles -->
 	<definition name="testTemplate" template="/WEB-INF/views/hello.jsp">
 

@@ -52,6 +52,13 @@ public class SecurityService implements UserDetailsService {
 		user.setPassword(passwordEncoder.encode(user.getPassword()));
 		getUserDao().create(user);
 	}
+	
+	public void updateUser(User user){
+		checkNotNull(user, "user is null");
+		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+		user.setPassword(passwordEncoder.encode(user.getPassword()));
+		getUserDao().update(user);
+	}
 
 	public void deleteUserById(Long id) {
 		checkArgument(id > 0, "id has to grader then 0");

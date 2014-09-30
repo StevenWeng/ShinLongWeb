@@ -43,7 +43,7 @@ public class UserManagementController {
 		if (getSecurityService().isOldPasswordMatch(id, oldPassword)) {
 			User user = getSecurityService().getUserById(id);
 			user.setPassword(password);
-			getSecurityService().createUser(user);
+			getSecurityService().updateUser(user);
 			return "redirect:/management/user/list";
 		} else {
 			User user = getSecurityService().getUserById(id);
