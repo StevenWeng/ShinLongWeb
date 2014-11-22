@@ -17,7 +17,7 @@
 			</li>
 			<li>
 				<div class="news">
-					<a href="#">交通位置</a>
+					<a href="/management/page/location">交通位置</a>
 				</div>
 			</li>
 			<li>
