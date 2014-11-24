@@ -12,7 +12,7 @@
 			</li>
 			<li>
 				<div class="news">
-					<a href="#">服務項目</a>
+					<a href="/management/page/service">服務項目</a>
 				</div>
 			</li>
 			<li>
