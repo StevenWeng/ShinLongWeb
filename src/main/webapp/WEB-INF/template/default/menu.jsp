@@ -9,6 +9,6 @@
 		<li><a href="#">產品資訊</a></li>
 		<li><a href="/promotion/">促銷活動</a></li>
 		<li><a href="#">人才招募</a></li>
-		<li><a href="#">聯絡我們</a></li>
+		<li><a href="mailto:shinlong01@gmail.com">聯絡我們</a></li>
 	</ul>
 </div>
