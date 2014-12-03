@@ -7,12 +7,12 @@
 	$(function() {
 		CKEDITOR.config.contentsCss = ['/css/style.css','/css/bootstrap.min.css'];
 		CKEDITOR.replace( 'editor1' ,{
-			filebrowserBrowseUrl : '/CKFinderJava/ckfinder/ckfinder.html',
-			filebrowserImageBrowseUrl : '/CKFinderJava/ckfinder/ckfinder.html?type=Images',
-			filebrowserFlashBrowseUrl : '/CKFinderJava/ckfinder/ckfinder.html?type=Flash',
-			filebrowserUploadUrl : '/CKFinderJava/ckfinder/core/connector/java/connector.java?command=QuickUpload&type=Files',
-			filebrowserImageUploadUrl : '/CKFinderJava/ckfinder/core/connector/java/connector.java?command=QuickUpload&type=Images',
-			filebrowserFlashUploadUrl : '/CKFinderJava/ckfinder/core/connector/java/connector.java?command=QuickUpload&type=Flash'
+			filebrowserBrowseUrl : '/CKFinder/ckfinder/ckfinder.html',
+			filebrowserImageBrowseUrl : '/CKFinder/ckfinder/ckfinder.html?type=Images',
+			filebrowserFlashBrowseUrl : '/CKFinder/ckfinder/ckfinder.html?type=Flash',
+			filebrowserUploadUrl : '/CKFinder/ckfinder/core/connector/java/connector.java?command=QuickUpload&type=Files',
+			filebrowserImageUploadUrl : '/CKFinder/ckfinder/core/connector/java/connector.java?command=QuickUpload&type=Images',
+			filebrowserFlashUploadUrl : '/CKFinder/ckfinder/core/connector/java/connector.java?command=QuickUpload&type=Flash'
 		});
 		CKEDITOR.plugins.registered['save'] = {
 				init : function(editor) {
