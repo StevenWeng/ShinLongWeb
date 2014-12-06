@@ -38,7 +38,7 @@
 	<bean id="userDao" class="com.wengs.web.model.dao.UserDao" />
 	
 		<bean id="baseDir" class="java.lang.String">
-		<constructor-arg value="D:/tmp/io"/>
+		<constructor-arg value="%TEMP%"/>
 	</bean>
 	
 	<bean id="edmThumbWidth" class="java.lang.Integer">

@@ -32,7 +32,7 @@ public class ImageUtilTest {
 	@Test
 	public void testSaveImage() throws IOException {
 		BufferedImage image = ImageIO.read(getClass().getResourceAsStream("/coupon.jpg"));
-		ImageUtil.saveImage(image, new File("D:\\tmp\\io\\testCoupon.jpg"));
+//		ImageUtil.saveImage(image, new File("testCoupon.jpg"));
 	}
 	
 
@@ -40,7 +40,7 @@ public class ImageUtilTest {
 	public void testResizeImage() throws IOException {
 		BufferedImage orgImage = ImageIO.read(getClass().getResourceAsStream("/coupon.jpg"));
 		BufferedImage resizeImage = ImageUtil.resizeImage(orgImage, 150, 100);
-		ImageUtil.saveImage(resizeImage, new File("D:\\tmp\\io\\testCoupon150_100.jpg"));
+//		ImageUtil.saveImage(resizeImage, new File("testCoupon150_100.jpg"));
 	}
 	
 	

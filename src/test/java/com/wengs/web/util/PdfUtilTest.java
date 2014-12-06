@@ -27,7 +27,7 @@ public class PdfUtilTest {
 	@Test
 	public void testSaveToPdf() throws IOException, DocumentException {
 		BufferedImage image = ImageIO.read(getClass().getResourceAsStream("/coupon.jpg"));
-		PdfUtil.saveToPdf(image, new File("D:\\tmp\\io\\testCoupon.pdf"));
+//		PdfUtil.saveToPdf(image, new File("testCoupon.pdf"));
 	}
 
 }
