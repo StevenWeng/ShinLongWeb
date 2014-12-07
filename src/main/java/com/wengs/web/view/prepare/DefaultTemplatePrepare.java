@@ -34,9 +34,9 @@ public class DefaultTemplatePrepare implements ViewPreparer {
 		
 		// TODO put data in model
 		List<Coupon> coupons = getCouponService().listActiveCoupon();
-		List<Post> posts = getPostService().listDescOrderPostsByPage(1, 4, true);
+		List<Post> postsInLeft = getPostService().listDescOrderPostsByPage(1, 4, true);
 		request.setAttribute("coupons", coupons);
-		request.setAttribute("posts", posts);
+		request.setAttribute("postsInLeft", postsInLeft);
 		
 	}
 

@@ -5,7 +5,7 @@
 	<div class="newlist">
 		<h2>最新消息</h2>
 		<ul>
-			<c:forEach items="${posts }" var="post">
+			<c:forEach items="${postsInLeft }" var="post">
 				<li>
 					<div class="news">
 						<h4>${post.title }</h4>

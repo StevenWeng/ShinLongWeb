@@ -34,7 +34,7 @@
 
 	<bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource">
 		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
-		<property name="url" value="jdbc:mysql://us-cdbr-iron-east-01.cleardb.net/heroku_4183ccdd9c8a7b5" />
+		<property name="url" value="jdbc:mysql://us-cdbr-iron-east-01.cleardb.net/heroku_4183ccdd9c8a7b5?characterEncoding=utf8" />
 		<property name="username" value="b6aa0cf465534c" />
 		<property name="password" value="03d0ec65" />
 		<property name="initialSize" value="5" />
