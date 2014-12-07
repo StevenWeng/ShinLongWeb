@@ -10,6 +10,8 @@
 	media="screen" />
 <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css"
 	media="screen" />
+<link rel="icon" href="/images/favicon.ico" type="image/x-icon" /> 
+<link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon" />
 <script language="javascript" src="/js/jquery-1.11.1.js"></script>
 <script language="javascript" src="/js/menu.js"></script>
 </head>

@@ -1,5 +1,7 @@
 package com.wengs.web.controller;
 
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -7,6 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.wengs.web.exception.PageNotFoundException;
 import com.wengs.web.model.entity.Page;
 import com.wengs.web.model.service.PageService;
 
@@ -19,6 +22,9 @@ public class PageController {
 	@RequestMapping(value = "/{name}", method = RequestMethod.GET)
 	public String getPageByName(@PathVariable String name, Model model) {
 		Page page = getPageService().getPageByName(name);
+		if(page ==null){
+			 throw new PageNotFoundException();
+		}
 		model.addAttribute("content", page.getContent());
 		model.addAttribute("title", page.getTitle());
 		return "page";
