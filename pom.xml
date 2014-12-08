@@ -43,24 +43,27 @@
 					<target>1.7</target>
 				</configuration>
 			</plugin>
-			 <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-dependency-plugin</artifactId>
-                <version>2.4</version>
-                <executions>
-                    <execution>
-                        <phase>package</phase>
-                        <goals><goal>copy-dependencies</goal></goals>
-                        <configuration>
-                            <includeArtifactIds>webapp-runner</includeArtifactIds>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-dependency-plugin</artifactId>
+				<version>2.4</version>
+				<executions>
+					<execution>
+						<phase>package</phase>
+						<goals>
+							<goal>copy-dependencies</goal>
+						</goals>
+						<configuration>
+							<includeArtifactIds>webapp-runner</includeArtifactIds>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
 		</plugins>
 		<pluginManagement>
 			<plugins>
-				<!--This plugin's configuration is used to store Eclipse m2e settings only. It has no influence on the Maven build itself.-->
+				<!--This plugin's configuration is used to store Eclipse m2e settings 
+					only. It has no influence on the Maven build itself. -->
 				<plugin>
 					<groupId>org.eclipse.m2e</groupId>
 					<artifactId>lifecycle-mapping</artifactId>
@@ -106,11 +109,11 @@
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
-            <groupId>com.github.jsimone</groupId>
-            <artifactId>webapp-runner</artifactId>
-            <version>7.0.40.1</version>
-            <scope>provided</scope>
-        </dependency>
+			<groupId>com.github.jsimone</groupId>
+			<artifactId>webapp-runner</artifactId>
+			<version>7.0.40.1</version>
+			<scope>provided</scope>
+		</dependency>
 		<dependency>
 			<groupId>log4j</groupId>
 			<artifactId>log4j</artifactId>
@@ -211,6 +214,13 @@
 			<artifactId>commons-io</artifactId>
 			<version>2.4</version>
 		</dependency>
+		<dependency>
+			<groupId>com.amazonaws</groupId>
+			<artifactId>aws-java-sdk-s3</artifactId>
+			<version>1.9.9</version>
+		</dependency>
+
+
 
 
 		<dependency>
